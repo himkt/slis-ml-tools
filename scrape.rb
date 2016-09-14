@@ -10,7 +10,11 @@ BASE_URL = 'https://slis-ml.github.io/feed.xml'
 
 
 
-# parse_rss :: url(text) -> 
+#
+# parse_rss :: url(text) -> title(string), date(datetime), place(string)
+#
+# parse rss formatted document to extract information about our events [WIP]
+#
 def parse_rss url
   response = open(url)
   rss = RSS::Parser.new(response).parse
@@ -19,19 +23,20 @@ def parse_rss url
   rss.items.each do |item|
     extract_date(item)
   end
-  
 end
 
 
 # 
-# NOTE : aim to return 3W (what, when, where)
-#
 # extract_date :: item(RSS::Rss::Channel::Item) -> title(string), date(datetime), place(string)
+#
+# extract_date [WIP]
 #
 def extract_date item
   title = item.title
   body  = item.description.gsub(/\n/, '')
 
+
+  # initialize
   date_string = 'undefined yet'
   place = 'undefined yet'
 
@@ -59,6 +64,7 @@ def extract_date item
 end
 
 
+# update google calendar [WIP]
 def update_slis_ml
 
 end
